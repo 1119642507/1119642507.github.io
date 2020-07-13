@@ -6,14 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>开发问题 | Hexo</title>
+  <title>xxx项目开发问题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="以下是所遇问题">
+  <meta name="description" content="一、echarts部分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="开发问题">
+<meta property="og:title" content="xxx项目开发问题">
 <meta property="og:url" content="http://yoursite.com/2020/07/13/cms-problem/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="以下是所遇问题">
+<meta property="og:description" content="一、echarts部分">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200708174536278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FkbWluMTExOTY=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2020070817464676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FkbWluMTExOTY=,size_16,color_FFFFFF,t_70">
@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200709101528419.gif">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200709101731574.gif">
 <meta property="article:published_time" content="2020-07-13T03:41:20.070Z">
-<meta property="article:modified_time" content="2020-07-13T03:55:52.901Z">
+<meta property="article:modified_time" content="2020-07-13T03:57:52.828Z">
 <meta property="article:author" content="Jing Liu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200708174536278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FkbWluMTExOTY=,size_16,color_FFFFFF,t_70">
@@ -147,7 +147,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      开发问题
+      xxx项目开发问题
     </h1>
   
 
@@ -160,9 +160,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>以下是所遇问题</p>
-<a id="more"></a>
-<h1 id="一、echarts部分"><a href="#一、echarts部分" class="headerlink" title="一、echarts部分"></a>一、echarts部分</h1><h2 id="01-1-echarts动态数据已经赋值，但是无法渲染页面的问题"><a href="#01-1-echarts动态数据已经赋值，但是无法渲染页面的问题" class="headerlink" title="01_1 echarts动态数据已经赋值，但是无法渲染页面的问题"></a>01_1 echarts动态数据已经赋值，但是无法渲染页面的问题</h2><p>echarts其实是比较简单的东西，但是如果项目中使用的场景比较多的时候，就会出现一些得细心研究的注意点。当时项目里面要做echarts切换需求，就是一个多选select框，当选择一条查询条件的时，显示单条柱状图；当选择两条查询条件时，显示叠状柱状图；当选择三条及三条以上数据时，显示堆簇状叠状图。大致就是下面这种情景。</p>
+        <h1 id="一、echarts部分"><a href="#一、echarts部分" class="headerlink" title="一、echarts部分"></a>一、echarts部分</h1><a id="more"></a>
+
+<h2 id="01-1-echarts动态数据已经赋值，但是无法渲染页面的问题"><a href="#01-1-echarts动态数据已经赋值，但是无法渲染页面的问题" class="headerlink" title="01_1 echarts动态数据已经赋值，但是无法渲染页面的问题"></a>01_1 echarts动态数据已经赋值，但是无法渲染页面的问题</h2><p>echarts其实是比较简单的东西，但是如果项目中使用的场景比较多的时候，就会出现一些得细心研究的注意点。当时项目里面要做echarts切换需求，就是一个多选select框，当选择一条查询条件的时，显示单条柱状图；当选择两条查询条件时，显示叠状柱状图；当选择三条及三条以上数据时，显示堆簇状叠状图。大致就是下面这种情景。</p>
 <p><img src="https://img-blog.csdnimg.cn/20200708174536278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FkbWluMTExOTY=,size_16,color_FFFFFF,t_70" alt="Image text"></p>
 <p><img src="https://img-blog.csdnimg.cn/2020070817464676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FkbWluMTExOTY=,size_16,color_FFFFFF,t_70" alt="Image text"></p>
 <p><img src="https://img-blog.csdnimg.cn/20200708174613870.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FkbWluMTExOTY=,size_16,color_FFFFFF,t_70" alt="Image text"></p>
