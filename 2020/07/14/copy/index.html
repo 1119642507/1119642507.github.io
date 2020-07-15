@@ -16,7 +16,7 @@
 <meta property="og:description" content="点击展开↓">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-14T03:55:53.382Z">
-<meta property="article:modified_time" content="2020-07-15T01:13:19.804Z">
+<meta property="article:modified_time" content="2020-07-15T07:35:03.558Z">
 <meta property="article:author" content="Jing Liu">
 <meta name="twitter:card" content="summary">
   
@@ -147,13 +147,26 @@
         <p>点击展开↓</p>
 <a id="more"></a>
 
-<p>拷贝数据：<br>    基本数据类型：<br>        拷贝后会生成一份新的数据，修改拷贝以后的数据不会影响原数据。<br>    对象/数组：<br>        拷贝后不会生成新的数据，而是拷贝的是引用。修改拷贝以后的数据会影响原来的数据。</p>
-<p>拷贝数据的方法：<br>    1.直接赋值给变量 浅拷贝<br>    2.Object.assign() 浅拷贝<br>    3.Array.prototype.concat() 浅拷贝<br>    4.Array.prototype.slice()  浅拷贝<br>    5.JSON.parse(JSON.stringify())  深拷贝，但是要求拷贝的数据里面不能有函数，处理不了。</p>
-<p>浅拷贝（对象/数组）：<br>    特点：拷贝的引用，修改拷贝以后的数据会影响原数据<br>深拷贝（也叫深度克隆）<br>    特点：拷贝的时候生成新数据，修改拷贝以后的数据不会影响原数据。</p>
-<p>那么如何实现深度克隆？<br>    思路：<br>        对拷贝的数据进行判断，如果该数据中未出现数组/对象，那么直接拷贝；如果该数据中出现了数组，那么遍历对象或者数组，拿到里面的每一项值，一直拿到是基本数据类型，然后<br>        去复制，就是深拷贝。</p>
+<h2 id="拷贝数据："><a href="#拷贝数据：" class="headerlink" title="拷贝数据："></a>拷贝数据：</h2><ul>
+<li>基本数据类型：拷贝后会生成一份新的数据，修改拷贝以后的数据不会影响原数据。</li>
+<li>对象/数组：拷贝后不会生成新的数据，而是拷贝的是引用。修改拷贝以后的数据会影响原来的数据。</li>
+</ul>
+<h2 id="拷贝数据的方法："><a href="#拷贝数据的方法：" class="headerlink" title="拷贝数据的方法："></a>拷贝数据的方法：</h2><ul>
+<li>1.直接赋值给变量 浅拷贝</li>
+<li>2.Object.assign() 浅拷贝</li>
+<li>3.Array.prototype.concat() 浅拷贝</li>
+<li>4.Array.prototype.slice()  浅拷贝</li>
+<li>5.JSON.parse(JSON.stringify())  深拷贝，但是要求拷贝的数据里面不能有函数，处理不了。</li>
+</ul>
+<h2 id="浅拷贝（对象-数组）："><a href="#浅拷贝（对象-数组）：" class="headerlink" title="浅拷贝（对象/数组）："></a>浅拷贝（对象/数组）：</h2><p>特点：拷贝的引用，修改拷贝以后的数据会影响原数据</p>
+<h2 id="深拷贝（也叫深度克隆）"><a href="#深拷贝（也叫深度克隆）" class="headerlink" title="深拷贝（也叫深度克隆）"></a>深拷贝（也叫深度克隆）</h2><p>特点：拷贝的时候生成新数据，修改拷贝以后的数据不会影响原数据。</p>
+<p>那么如何实现深度克隆？</p>
+<ul>
+<li>思路：对拷贝的数据进行判断，如果该数据中未出现数组/对象，那么直接拷贝；如果该数据中出现了数组，那么遍历对象或者数组，拿到里面的每一项值，一直拿到是基本数据类型，然后去复制，就是深拷贝。</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  1- 定义检测数据类型的功能函数</span><br><span class="line">         function checkedType(target) &#123;</span><br><span class="line">             return Object.prototype.toString.call(target).slice(8,-1)</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2- 实现深度克隆--&gt;对象、数组</span><br><span class="line">        function clone(target) &#123;</span><br><span class="line">            &#x2F;&#x2F; 判断拷贝的数据类型</span><br><span class="line">            &#x2F;&#x2F; 初始化变量result成为最终克隆的数据</span><br><span class="line">            let result,targetType &#x3D; checkedType(target)</span><br><span class="line">            if (targetType&#x3D;&#x3D;&#x3D;&quot;Object&quot;) &#123;</span><br><span class="line">                result &#x3D; &#123;&#125;</span><br><span class="line">            &#125;else if (targetType&#x3D;&#x3D;&#x3D;&quot;Array&quot;) &#123;</span><br><span class="line">                result &#x3D; []</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                return target;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 遍历目标数据</span><br><span class="line">            for(let i in target) &#123;</span><br><span class="line">                &#x2F;&#x2F; 获取遍历目标结构的每一项的值</span><br><span class="line">                let value &#x3D; target[i]</span><br><span class="line">                &#x2F;&#x2F; 判断目标结构里的每一项的值是否存在对象&#x2F;数组</span><br><span class="line">                if (checkedType(value)&#x3D;&#x3D;&#x3D;&quot;Object&quot;||checkedType(value)&#x3D;&#x3D;&#x3D;&quot;Array&quot;) &#123;&#x2F;&#x2F;对象或者数组里面嵌套了对象或者数组</span><br><span class="line">                    &#x2F;&#x2F; 继续遍历获取到的value值</span><br><span class="line">                    result[i] &#x3D; clone(value)</span><br><span class="line">                &#125;else &#123;&#x2F;&#x2F; 获取到的value值是基本的数据类型或者是函数</span><br><span class="line">                    result[i] &#x3D; value</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return result</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h1><p>当要克隆的数据是对象或者数组时，若内部已确定无函数，那么可以直接使用 JSON.parse(JSON.stringify(obj))进行深度克隆；<br>若不清楚对象或者数组内部是否包含函数的情况时，那么就要自定义方法就行深度克隆。</p>
+<h1 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h1><p>当要克隆的数据是对象或者数组时，若内部已确定无函数，那么可以直接使用 JSON.parse(JSON.stringify(obj))进行深度克隆；<br>若不确定对象或者数组内部是否包含函数的情况时，那么就要自定义方法就行深度克隆。</p>
 
       
 
